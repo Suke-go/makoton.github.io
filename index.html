@@ -445,6 +445,66 @@
             margin-bottom: 20px;
             opacity: 0.5;
         }
+                /* --- ▼▼▼ ここからフォーム用のCSSを追加 ▼▼▼ --- */
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e5e0;
+            background-color: #fcfcf9;
+            font-family: 'Klee One', cursive;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+            transform: rotate(0.2deg);
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #f4a8a8;
+        }
+        .contact-form button {
+            display: inline-block;
+            background: #333;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            font-family: 'Klee One', cursive;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            transform: rotate(-1deg);
+        }
+        .contact-form button:hover {
+            background-color: #ff3333;
+            transform: rotate(-2deg) scale(1.05);
+        }
+        /* --- ▲▲▲ ここまでフォーム用のCSSを追加 ▲▲▲ --- */
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            font-size: 12px;
+            color: #999;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '～ 終 ～';
+            display: block;
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
         
         /* Mobile adjustments */
         @media (max-width: 768px) {
@@ -580,6 +640,32 @@
                     
                     <p>大学でコンピューター・サイエンスを勉強しており、上の<em>Makoton</em>よりは<span class="manic">社会適合性が高い</span>。日々砂漠のど真ん中にいる彼から送られてくるメールを<span class="void">辟易しながら</span>さばいている。</p>
 
+                </div>
+            </article>
+            <article class="entry about-section" id="contact">
+                <div class="tape tape-1"></div>
+                <div class="tape tape-2"></div>
+                <time class="entry-date">Contact</time>
+                <h2 class="entry-title">お便りフォーム</h2>
+                <div class="entry-content">
+                    <p>執筆者や管理者への感想・メッセージなど、お気軽にお送りください。</p>
+                    <form class="contact-form" action="https://formspree.io/f/mnnvozez" method="POST">
+                        <div>
+                            <label for="name">お名前（任意）</label>
+                            <input type="text" id="name" name="name">
+                        </div>
+                        <div>
+                            <label for="contact_info">連絡先（任意）</label>
+                            <input type="text" id="contact_info" name="contact_info" placeholder="メールアドレス、SNSアカウントなど">
+                        </div>
+                        <div>
+                            <label for="message">感想・メッセージ</label>
+                            <textarea id="message" name="message" rows="8" required></textarea>
+                        </div>
+                        <div>
+                            <button type="submit">送信する</button>
+                        </div>
+                    </form>
                 </div>
             </article>
         </main>
