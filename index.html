@@ -82,7 +82,44 @@
             color: #1a1a1a;
             animation: spray 0.8s ease-out forwards;
         }
+
+        /* 友人コメント（付箋風） */
+        .friend-comment {
+            background: #fffacd; /* 付箋らしい薄黄色 */
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 1px solid #f0e68c;
+            border-bottom: 1px solid #f0e68c;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+            transform: rotate(1.5deg); /* 少し傾ける */
+            position: relative;
+            font-family: 'Klee One', cursive; /* 既存のフォントを継承 */
+            line-height: 1.6;
+        }
         
+        /* 付箋の少し色が違う「のり」の部分を表現 */
+        .friend-comment::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: rgba(248, 240, 183, 0.6);
+        }
+        
+        .friend-comment p {
+            margin-bottom: 1em; /* 段落間のスペースを調整 */
+        }
+        
+        /* コメント主の署名スタイル */
+        .comment-author {
+            display: block;
+            text-align: right;
+            margin-top: 15px;
+            font-style: italic;
+            color: #888;
+        }
         /* Title effects */
         .site-title::before {
             content: 'q(･u･)i(･p･)ped.';
@@ -493,10 +530,12 @@
                     </div>
                     
                     <p><strong>Makoton</strong></p>
-                    <p>Hailing from Deep Springs College, the U.S. Makoton has three pieces of advice for you: be concise, be critical, and don't be conservative. Makoton has a complicated relationship with Haruki Murakami, but it's mostly spiteful. You can find Makoto on page 432 of The Dawn of Everything by David Graeber. Makoton embodies a lost imperial spirit of professionalism within the SB. Following Makoton's advice, we'll end this bio here. <span class="void">(cited from <a href="https://www.deepsprings.edu/next/wp-content/uploads/Newsletter107.pdf">The Voice of the Desert</a>)</span></p>
-                    <p>Deep Springs ColleageのMakotonから、てめえらへの三つの助言だ。曰く、ごちゃごちゃ言うな、疑ってかかれ、コンサバに成り下がるな。このMakoton、村上春樹とは実に込み入った関係でな。まあ、ほとんど一方的な悪意で成り立ってる。何者だって？ デヴィッド・グレーバーの『万物の黎明』を読め。432ページにそいつはいる。MakotonはSB（何の略かは知らん）とかいう界隈じゃとっくに失われた、古き良き帝国のプロ根性を体現してるんだと。てなわけで、そのMakoton様のお言いつけ通り、この自己紹介もどきはここらで切り上げとく。<span class="void">（訳）</span></p>
                     <p>大学では友達の作り方を勉強しており、下の清水よりは社会不適合性が高い。黒歴史を生産する場所を与えてもらって、承認欲求の虜であるMakotonはわくわくしている。一年後にはニートになりそうなニートもどきなので、生温かい目で見守ってあげてください。（本人談）</p>
-                
+                    <div class="friend-comment">
+                      <p>Hailing from Deep Springs College, the U.S. Makoton has three pieces of advice for you: be concise, be critical, and don't be conservative. Makoton has a complicated relationship with Haruki Murakami, but it's mostly spiteful. You can find Makoto on page 432 of The Dawn of Everything by David Graeber. Makoton embodies a lost imperial spirit of professionalism within the SB. Following Makoton's advice, we'll end this bio here. <span class="void">(cited fromThe Voice of the Desert)</span></p>
+                      <p>Deep Springs ColleageのMakotonは、あんたらに三つのアドバイスがあるとのこと。曰く、ごちゃごちゃ言うな、疑ってかかれ、保守に成り下がるな。このMakoton、村上春樹とは実に込み入った関係を構築しているとほざいているが、まあ、ほとんど一方的に敵意を持っているだけらしい。いつ見てもMakotonはデヴィッド・グレーバーの『万物の黎明』の432ページあたりを読んでいるMakotonは、生徒会議なんかでは、とっくに失われた古き良き帝国のプロ根性を体現してる。保守的なのは誰だよ。てなわけで、そのMakotonの言いつけ通り、この人物紹介はここらで切り上げておこう。（訳）<span class="void"></span></p>
+                      <span class="comment-author">— 友人より</span>
+                    </div>
                 </div>
             </article>
             
