@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mkomg.lol</title>
+    <title>Day by Day from the Desert</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap');
         
@@ -64,6 +64,13 @@
             overflow: hidden;
         }
         
+        /* Spray paint effect */
+        @keyframes spray {
+            0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+            50% { opacity: 1; transform: scale(1.1) rotate(-2deg); }
+            100% { opacity: 0.9; transform: scale(1) rotate(-2deg); }
+        }
+        
         .site-title {
             font-size: 56px;
             font-weight: 600;
@@ -73,10 +80,12 @@
             position: relative;
             letter-spacing: -2px;
             color: #1a1a1a;
+            animation: spray 0.8s ease-out forwards;
         }
         
         /* Title effects */
         .site-title::before {
+            content: 'q(･u･)i(･p･)ped.';
             position: absolute;
             top: 0;
             left: 0;
@@ -88,7 +97,7 @@
         }
         
         .site-title::after {
-            content: 'q(･u･)i(･p･)ped.';
+            content: '';
             position: absolute;
             bottom: -5px;
             left: -10%;
@@ -115,6 +124,21 @@
             z-index: -2;
             filter: blur(20px);
         }
+        
+        /* Paint drips */
+        .paint-drip {
+            position: absolute;
+            width: 3px;
+            height: 20px;
+            background: #1a1a1a;
+            bottom: -15px;
+            opacity: 0.6;
+            border-radius: 0 0 50% 50%;
+        }
+        
+        .drip-1 { left: 20%; height: 25px; }
+        .drip-2 { left: 45%; height: 15px; }
+        .drip-3 { right: 30%; height: 20px; }
         
         .subtitle-fragments {
             position: relative;
@@ -224,6 +248,15 @@
         .entry-content p {
             margin-bottom: 18px;
             transform: rotate(0.1deg);
+        }
+        
+        .entry-content a {
+            color: #ff3333;
+            text-decoration: underline wavy;
+        }
+        
+        .entry-content a:hover {
+            color: #cc0000;
         }
         
         /* Margin doodles and notes */
@@ -408,62 +441,84 @@
         <div class="scribble scribble-2"></div>
         
         <nav class="nav-tabs">
-            <a href="#daily" class="nav-tab">Home</a>
-            <a href="#about" class="nav-tab">About Me</a>
+            <a href="#daily" class="nav-tab">Daily</a>
+            <a href="#writer" class="nav-tab">Writer</a>
+            <a href="#admin" class="nav-tab">Admin</a>
         </nav>
         
-            <article class="entry">
+        <header class="header-area">
+            <h1 class="site-title floating">
+                Day by Day from the Desert
+                <span class="title-highlight"></span>
+                <span class="paint-drip drip-1"></span>
+                <span class="paint-drip drip-2"></span>
+                <span class="paint-drip drip-3"></span>
+            </h1>
+            <div class="subtitle-fragments">
+                <span class="fragment">砂漠からの便り</span>
+                <span class="fragment">日々の記録</span>
+                <span class="fragment">Deep Springs発</span>
+            </div>
+        </header>
+        
+        <main class="content">
+            <article class="entry" id="daily">
                 <time class="entry-date">2025.06.25</time>
                 <span class="entry-mood">🌀</span>
-                <h2 class="entry-title">To be continued</h2>
+                <h2 class="entry-title">To be continued...</h2>
                 <div class="entry-content">
-                    <p></p>
+                    <p>このブログは間もなく始まります。</p>
                     
                     <div class="thought-bubble">
                         かの砂漠から<br>
-                        本当にブログが届くのか？
-                        （管理者）
-                    </div>                    
+                        本当にブログが届くのか？<br>
+                        （管理者より）
+                    </div>
+                    
+                    <p>カリフォルニアとネバダの境界にある<span class="manic">Deep Springs Valley</span>から、日々の記録が送られてくる予定です。</p>
                 </div>
             </article>
-
             
-            <article class="entry about-section" id="about">
+            <article class="entry about-section" id="writer">
                 <div class="tape tape-1"></div>
                 <div class="tape tape-2"></div>
-                <time class="entry-date">∞</time>
+                <time class="entry-date">Profile</time>
                 <h2 class="entry-title">このブログの執筆者</h2>
                 <div class="entry-content">
                     <div class="photo-container">
                         <div class="photo-frame">
-                            <img src="https://scontent-nrt1-2.cdninstagram.com/v/t51.2885-19/464176126_1216712702715052_5784314511432813684_n.jpg?_nc_ht=scontent-nrt1-2.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2QFpyeBpqDIkeCWhfonh3m8Fke-yQ4RP7rtXyx_LWj2NisgDC6VVXVt-2HcTZHFA6Pg&_nc_ohc=V58fy-ZAhe8Q7kNvwHPb8WR&_nc_gid=xjNZC6UC3zYjEKIdB0rzcg&edm=ALGbJPMBAAAA&ccb=7-5&oh=00_AfOhFXvAA_aXZu95qTcVjnl-34VrLdyfpciXp7J_LRrTRw&oe=6861BE3A&_nc_sid=7d3ac5">
-                            <span class="photo-caption">キュウリとの対話（2025年夏）</span>
+                            <img src="makoton.jpg" alt="Makoto Kikuchi">
+                            <span class="photo-caption">Desert life (2025)</span>
                         </div>
                     </div>
-                    <p>Hailing from Deep　Springs Colleage, the U.S. Makoto Kikuchi has three pieces of advice for you: be concise, be critical, and don’t be conservative. Makoto has a complicated relationship with Haruki Murakami, but it’s mostly spiteful. You can find Makoto on page 432 of The Dawn of Everything by David Graeber. Makoto embodies a lost imperial spirit of professionalism within the SB. Following akoto’s advice, we’ll end this bio here.(cited from <a href="https://www.deepsprings.edu/next/wp-content/uploads/Newsletter107.pdf">The Voice of the Desert<a/>) </p>
-                    <p>東京出身のキクチ・マコトから、てめえらへの三つの助言だ。曰く、ごちゃごちゃ言うな、疑ってかかれ、コンサバに成り下がるな。このマコト、村上春樹とは実に込み入った関係でな。まあ、ほとんど一方的な悪意で成り立ってる。何者だって？ デヴィッド・グレーバーの『万物の黎明』を読め。432ページにそいつはいる。マコトはSB（何の略かは知らん）とかいう界隈じゃとっくに失われた、古き良き帝国のプロ根性を体現してるんだと。てなわけで、そのマコト様のお言いつけ通り、この自己紹介もどきはここらで切り上げとく。（訳）</p>              
+                    
+                    <p><strong>Makoto Kikuchi</strong></p>
+                    
+                    <p>Hailing from Deep Springs College, the U.S. Makoto Kikuchi has three pieces of advice for you: be concise, be critical, and don't be conservative. Makoto has a complicated relationship with Haruki Murakami, but it's mostly spiteful. You can find Makoto on page 432 of The Dawn of Everything by David Graeber. Makoto embodies a lost imperial spirit of professionalism within the SB. Following Makoto's advice, we'll end this bio here. <span class="void">(cited from <a href="https://www.deepsprings.edu/next/wp-content/uploads/Newsletter107.pdf">The Voice of the Desert</a>)</span></p>
+                    
+                    <p>東京出身のキクチ・マコトから、てめえらへの三つの助言だ。曰く、ごちゃごちゃ言うな、疑ってかかれ、コンサバに成り下がるな。このマコト、村上春樹とは実に込み入った関係でな。まあ、ほとんど一方的な悪意で成り立ってる。何者だって？ デヴィッド・グレーバーの『万物の黎明』を読め。432ページにそいつはいる。マコトはSB（何の略かは知らん）とかいう界隈じゃとっくに失われた、古き良き帝国のプロ根性を体現してるんだと。てなわけで、そのマコト様のお言いつけ通り、この自己紹介もどきはここらで切り上げとく。<span class="void">（訳）</span></p>
+                </div>
             </article>
-            <article class="entry about-section" id="about">
+            
+            <article class="entry about-section" id="admin">
                 <div class="tape tape-1"></div>
                 <div class="tape tape-2"></div>
-                <time class="entry-date">∞</time>
-                <h2 class="entry-title">このブログの管理者者</h2>
+                <time class="entry-date">Admin</time>
+                <h2 class="entry-title">このブログの管理者</h2>
                 <div class="entry-content">
-                    <div class="photo-container">
-                        <div class="photo-frame">
-                            <img src="cucumber-photo.jpg" alt="キュウリと私">
-                        </div>
-                    </div>
-                    <p><i>Makoto Kikuchi</i>i>の友人の<a href="ksk432.com">清水</a>。</p>
-                    <p>大学でコンピューター・サイエンスを勉強しており、上の<i>Makoto Kikuchi</i>よりは社会適合性が高い。日々砂漠のど真ん中にいる彼から送られてくるメイルを辟易しながらさばいている。</p>
                     
+                    <p><em>Makoto Kikuchi</em>の友人である<a href="https://ksk432.com">清水</a>。</p>
+                    
+                    <p>大学でコンピューター・サイエンスを勉強しており、上の<em>Makoto Kikuchi</em>よりは<span class="manic">社会適合性が高い</span>。日々砂漠のど真ん中にいる彼から送られてくるメールを<span class="void">辟易しながら</span>さばいている。</p>
+                    
+
                 </div>
             </article>
         </main>
         
         <footer class="footer">
             <p>このサイトは GitHub Pages でホスティングされています</p>
-            <p>© 2025 浮遊する意識 | 連絡先：Makoto Kikuchi（makoto.kikuchi<at>deepsprings.edu）</p>
+            <p>© 2025 Day by Day from the Desert | Contact: Makoto Kikuchi (makoto.kikuchi[at]deepsprings.edu)</p>
         </footer>
     </div>
 </body>
