@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮遊する意識の記録</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Klee One', cursive;
+            background-color: #f8f7f3;
+            color: #2a2a2a;
+            line-height: 1.7;
+            cursor: crosshair;
+        }
+        
+        /* Notebook texture */
+        .page-wrapper {
+            background-image: 
+                repeating-linear-gradient(
+                    transparent,
+                    transparent 26px,
+                    #e5e5e0 26px,
+                    #e5e5e0 27px
+                );
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .page-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 70px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #f4a8a8;
+            opacity: 0.4;
+        }
+        
+        /* Floating elements */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(-1deg); }
+            66% { transform: translateY(5px) rotate(1deg); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Header - scattered layout */
+        .header-area {
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .site-title {
+            font-size: 42px;
+            font-weight: 600;
+            display: inline-block;
+            transform: rotate(-2deg);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+        }
+        
+        .subtitle-fragments {
+            position: relative;
+            height: 60px;
+        }
+        
+        .fragment {
+            position: absolute;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .fragment:nth-child(1) { left: 20%; top: 0; transform: rotate(-5deg); }
+        .fragment:nth-child(2) { right: 25%; top: 20px; transform: rotate(3deg); }
+        .fragment:nth-child(3) { left: 50%; top: 35px; transform: translateX(-50%) rotate(-1deg); }
+        
+        /* Navigation tabs */
+        .nav-tabs {
+            position: fixed;
+            top: 100px;
+            right: -40px;
+            transform: rotate(90deg);
+            transform-origin: bottom left;
+            z-index: 100;
+        }
+        
+        .nav-tab {
+            display: inline-block;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 5px 15px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: #666;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        
+        .nav-tab:hover {
+            background: #333;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        
+        /* Main content area */
+        .content {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 0 100px 50px 100px;
+        }
+        
+        /* Entry styles - more organic */
+        .entry {
+            margin-bottom: 80px;
+            position: relative;
+        }
+        
+        .entry-date {
+            font-size: 13px;
+            color: #888;
+            position: absolute;
+            left: -60px;
+            top: 5px;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            white-space: nowrap;
+        }
+        
+        .entry-mood {
+            position: absolute;
+            right: -50px;
+            top: 0;
+            font-size: 24px;
+            opacity: 0.7;
+        }
+        
+        .entry-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+            transform: rotate(0.5deg);
+        }
+        
+        .entry-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #333;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .entry:hover .entry-title::after {
+            transform: scaleX(1);
+        }
+        
+        .entry-content {
+            font-size: 16px;
+            position: relative;
+        }
+        
+        .entry-content p {
+            margin-bottom: 18px;
+            transform: rotate(0.1deg);
+        }
+        
+        /* Margin doodles and notes */
+        .margin-thought {
+            position: absolute;
+            font-size: 12px;
+            color: #999;
+            font-style: italic;
+            white-space: nowrap;
+        }
+        
+        /* Photo area */
+        .photo-container {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+        }
+        
+        .photo-frame {
+            border: 8px solid #fff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: inline-block;
+            position: relative;
+            background: #fff;
+            padding: 5px;
+        }
+        
+        .photo-frame img {
+            display: block;
+            max-width: 300px;
+            height: auto;
+            filter: grayscale(20%);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%) rotate(2deg);
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        /* Sketch areas */
+        .thought-bubble {
+            display: inline-block;
+            border: 2px dashed #999;
+            border-radius: 50% 40% 50% 40%;
+            padding: 15px 25px;
+            margin: 20px 0;
+            position: relative;
+            background: rgba(255, 255, 255, 0.5);
+            transform: rotate(-1deg);
+        }
+        
+        .thought-bubble::before {
+            content: '。o O';
+            position: absolute;
+            bottom: -20px;
+            left: 20px;
+            font-size: 20px;
+            color: #ccc;
+        }
+        
+        /* Interview style */
+        .dialogue {
+            margin: 25px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .dialogue::before {
+            content: '―';
+            position: absolute;
+            left: 10px;
+            color: #999;
+        }
+        
+        .dialogue-line {
+            margin: 10px 0;
+            font-size: 15px;
+        }
+        
+        /* About section */
+        .about-section {
+            background: #fff;
+            padding: 40px;
+            margin: 50px -40px;
+            transform: rotate(-0.5deg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .tape {
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            background: rgba(255, 255, 200, 0.6);
+            border: 1px solid rgba(200, 200, 150, 0.3);
+        }
+        
+        .tape-1 { top: -15px; left: 30px; transform: rotate(-20deg); }
+        .tape-2 { top: -15px; right: 50px; transform: rotate(15deg); }
+        
+        /* Random decorations */
+        .scribble {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ddd;
+            border-radius: 45% 55% 60% 40%;
+            opacity: 0.2;
+        }
+        
+        .scribble-1 { top: 200px; right: 20px; transform: rotate(45deg); }
+        .scribble-2 { bottom: 300px; left: 10px; transform: rotate(-30deg) scale(0.7); }
+        
+        /* Emotional states */
+        .manic {
+            color: #ff4444;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .void {
+            opacity: 0.5;
+            font-style: italic;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            font-size: 12px;
+            color: #999;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '～ 終 ～';
+            display: block;
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .content {
+                padding: 0 40px 50px 60px;
+            }
+            
+            .nav-tabs {
+                position: static;
+                transform: none;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            
+            .entry-date {
+                position: static;
+                transform: none;
+                margin-bottom: 10px;
+            }
+            
+            .entry-mood {
+                position: static;
+                float: right;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="scribble scribble-1"></div>
+        <div class="scribble scribble-2"></div>
+        
+        <nav class="nav-tabs">
+            <a href="#daily" class="nav-tab">日々</a>
+            <a href="#interview" class="nav-tab">対話</a>
+            <a href="#about" class="nav-tab">私</a>
+            <a href="https://github.com/username/blog" class="nav-tab">GitHub</a>
+        </nav>
+        
+        <header class="header-area">
+            <h1 class="site-title floating">浮遊する意識の記録</h1>
+            <div class="subtitle-fragments">
+                <span class="fragment">アヴァンギャルドになりたい</span>
+                <span class="fragment">でも勇気がない</span>
+                <span class="fragment">資本主義の海で溺れている</span>
+            </div>
+        </header>
+        
+        <main class="content">
+            <article class="entry" id="daily">
+                <time class="entry-date">2025.06.21</time>
+                <span class="entry-mood">😵‍💫</span>
+                <h2 class="entry-title">高揚と虚無のあいだ</h2>
+                <div class="entry-content">
+                    <p>朝起きたら<span class="manic">世界を変革できる</span>気がした。コーヒーを3杯飲んで、マニフェストを書き始めた。</p>
+                    
+                    <div class="thought-bubble">
+                        芸術は爆発だ！<br>
+                        いや、爆発は芸術だ！<br>
+                        いや、私が爆発だ！
+                    </div>
+                    
+                    <p>でも昼過ぎには<span class="void">すべてが無意味に思えてきた</span>。マニフェストは途中で放棄。代わりにYouTubeで猫の動画を4時間見た。</p>
+                    
+                    <div class="margin-thought" style="right: -100px; top: 180px;">
+                        ← これが現代の瞑想
+                    </div>
+                    
+                    <p>夕方、スーパーでキュウリを買った。なんとなく親近感を覚えて。家に帰って一緒に写真を撮った。これもアートかもしれない。</p>
+                </div>
+            </article>
+            
+            <article class="entry">
+                <time class="entry-date">2025.06.19</time>
+                <span class="entry-mood">🌀</span>
+                <h2 class="entry-title">就活説明会という名の演劇</h2>
+                <div class="entry-content">
+                    <p>友人に誘われて就活説明会に行った。みんなリクルートスーツという名の<span class="manic">制服</span>を着ていた。</p>
+                    
+                    <p>「弊社のビジョンは...」「シナジーを...」「イノベーションが...」</p>
+                    
+                    <div class="thought-bubble">
+                        言葉が記号として<br>
+                        空中を漂っている
+                    </div>
+                    
+                    <p>途中で抜け出して、建物の屋上に行った。都市の風景を見ながら、<span class="void">自分もいずれこの歯車の一部になるのかな</span>と思った。</p>
+                    
+                    <p>でも今は、まだ抵抗したい。意味はないかもしれないけど。</p>
+                </div>
+            </article>
+            
+            <article class="entry" id="interview">
+                <time class="entry-date">2025.06.17</time>
+                <span class="entry-mood">💭</span>
+                <h2 class="entry-title">公園で出会った哲学する犬の飼い主</h2>
+                <div class="entry-content">
+                    <p>散歩中、ベンチに座っている老人と目が合った。隣には考え深そうな顔をした犬。</p>
+                    
+                    <div class="dialogue">
+                        <p class="dialogue-line">「若いのに暗い顔してるね」</p>
+                        <p class="dialogue-line">「人生について考えすぎちゃって...」</p>
+                        <p class="dialogue-line">「この犬を見てごらん。何も考えてないようで、全部わかってる顔してるだろ」</p>
+                    </div>
+                    
+                    <p>確かに、その犬は悟りを開いたような表情をしていた。</p>
+                    
+                    <div class="dialogue">
+                        <p class="dialogue-line">「考えることは大事だけど、時には犬みたいに、ただ存在することも大事なんだよ」</p>
+                        <p class="dialogue-line">「でも、ただ存在するって難しくないですか？」</p>
+                        <p class="dialogue-line">「難しく考えるから難しいんだ」</p>
+                    </div>
+                    
+                    <p>帰り道、<span class="manic">犬になりたい</span>と本気で思った。</p>
+                </div>
+            </article>
+            
+            <article class="entry about-section" id="about">
+                <div class="tape tape-1"></div>
+                <div class="tape tape-2"></div>
+                <time class="entry-date">∞</time>
+                <h2 class="entry-title">このブログの執筆者</h2>
+                <div class="entry-content">
+                    <div class="photo-container">
+                        <div class="photo-frame">
+                            <img src="cucumber-photo.jpg" alt="キュウリと私">
+                            <span class="photo-caption">キュウリとの対話（2025年夏）</span>
+                        </div>
+                    </div>
+                    
+                    <p>Hailing from Deep　Springs Colleage, the U.S. Makoto Kikuchi has three pieces of advice for you: be concise, be critical, and don’t be conservative. Makoto has a complicated relationship with Haruki Murakami, but it’s mostly spiteful. You can find Makoto on page 432 of The Dawn of Everything by David Graeber. Makoto embodies a lost imperial spirit of professionalism within the SB. Following akoto’s advice, we’ll end this bio here.() </p>
+                    <p>東京出身のキクチ・マコトから、てめえらへの三つの助言だ。曰く、ごちゃごちゃ言うな、疑ってかかれ、コンサバに成り下がるな。このマコト、村上春樹とは実に込み入った関係でな。まあ、ほとんど一方的な悪意で成り立ってる。何者だって？ デヴィッド・グレーバーの『万物の黎明』を読め。432ページにそいつはいる。マコトはSB（何の略かは知らん）とかいう界隈じゃとっくに失われた、古き良き帝国のプロ根性を体現してるんだと。てなわけで、そのマコト様のお言いつけ通り、この自己紹介もどきはここらで切り上げとく。（訳）</p>
+                    <p></p>
+                    
+                    <div class="thought-bubble">
+                        好きなもの：<br>
+                        意味のない会話、深夜の散歩、<br>
+                        キュウリ、猫、形而上学、<br>
+                        逃避
+                    </div>
+                                        
+                </div>
+              
+            </article>
+                      <article class="entry about-section" id="about">
+                <div class="tape tape-1"></div>
+                <div class="tape tape-2"></div>
+                <time class="entry-date">∞</time>
+                <h2 class="entry-title">このブログの管理者者</h2>
+                <div class="entry-content">
+                    <div class="photo-container">
+                        <div class="photo-frame">
+                            <img src="cucumber-photo.jpg" alt="キュウリと私">
+                        </div>
+                    </div>
+                    <p>Makoto Kikuchiの友人の清水。</p>
+                    <p>大学でコンピューター・サイエンスを勉強しており、上の<i>Makoto Kikuchi</i>よりは社会適合性が高い。</p>
+                    
+                </div>
+            </article>
+        </main>
+        
+        <footer class="footer">
+            <p>このサイトは GitHub Pages でホスティングされています</p>
+            <p>© 2025 浮遊する意識 | 連絡先：Makoto Kikuchi（makoto.kikuchi<at>deepsprings.edu）</p>
+        </footer>
+    </div>
+</body>
+</html>
