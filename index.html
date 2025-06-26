@@ -560,9 +560,10 @@
         }
         /* --- ▼▼▼ 管理人の茶々入れコメント用スタイル（改善版） ▼▼▼ --- */
         .admin-comment-wrapper {
-            /* 傾きを少し強くして、より無造作な感じに */
-            margin: 35px -10px 35px 10px; 
-            transform: rotate(-2deg);
+            /* 上下のマージンはそのままに、左右のマージンをリセット */
+            margin: 35px 0; 
+            /* transformプロパティで傾きと横移動を同時に指定 */
+            transform: rotate(-2deg) translateX(-15px);
             position: relative;
             z-index: 5;
         }
