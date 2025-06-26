@@ -558,50 +558,58 @@
             background-color: #ff3333;
             transform: rotate(-2deg) scale(1.05);
         }
+        /* --- ▼▼▼ 管理人の茶々入れコメント用スタイル（改善版） ▼▼▼ --- */
         .admin-comment-wrapper {
-            /* コメント全体を少しずらして、本文に重ねて貼ったような感じを出す */
-            margin: 35px -15px 35px 5px; 
-            transform: rotate(-1.5deg);
+            /* 傾きを少し強くして、より無造作な感じに */
+            margin: 35px -10px 35px 10px; 
+            transform: rotate(-2deg);
             position: relative;
-            z-index: 5; /* 他の要素より少し手前に表示 */
+            z-index: 5;
         }
         
         .admin-comment {
-            background: #fffdf7; /* 少しクリーム色がかった紙の色 */
-            border: 1px dashed #d32f2f; /* 赤い破線 */
-            padding: 20px 25px 25px;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.07);
+            background: #fffdf7;
+            border: 1px dashed #d32f2f;
+            /* 上下左右の余白を調整して、文字の窮屈さを解消 */
+            padding: 25px 28px 28px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
             position: relative;
-            line-height: 1.6;
+            /* 行間を少し広げて読みやすく */
+            line-height: 1.8;
         }
         
-        /* メモを留めるクリップを表現 */
+        /* クリップの位置と角度を微調整 */
         .admin-comment::before {
-            content: '📎'; /* クリップの絵文字 */
+            content: '📎';
             position: absolute;
-            top: -18px;
-            left: 25px;
+            top: -16px;
+            left: 30px;
             font-size: 26px;
-            transform: rotate(10deg);
+            transform: rotate(12deg);
             opacity: 0.9;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         
         .admin-comment p {
-            margin-bottom: 0; /* 段落は一つと想定 */
-            color: #3a3a3a; /* 少し濃いめの文字色 */
+            margin-bottom: 0;
+            /* 文字色を少しだけ柔らかく */
+            color: #404040; 
             font-size: 15px;
         }
         
-        /* コメント主（管理人）の署名スタイル */
+        /* 署名のスタイルを調整 */
         .admin-comment .comment-author {
             display: block;
             text-align: right;
-            margin-top: 10px;
+            margin-top: 15px;
             font-style: italic;
-            color: #c62828; /* 強調された赤色 */
-            font-weight: 600; /* 少し太字に */
+            color: #c62828;
+            font-weight: 600;
+            /* 署名だけ少し傾けて手書きサイン感を出す */
+            transform: rotate(0.5deg);
         }
+        
+
         
         @media (max-width: 768px) {
             .content {
