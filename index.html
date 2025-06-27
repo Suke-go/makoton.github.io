@@ -631,6 +631,98 @@
             line-height: 1.6;
             color: #555;
         }
+        /* --- ▼▼▼ 次回予告セクションのスタイル ▼▼▼ --- */
+.upcoming-notice {
+    background: #fdf5e6; /* 少し色の違う紙の色 */
+    border: 1px solid #eaddc5;
+    padding: 25px 30px;
+    margin-bottom: 60px;
+    transform: rotate(-1deg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
+}
+
+/* マスキングテープ風の飾り */
+.upcoming-notice::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 25px;
+    background: rgba(173, 216, 230, 0.5); /* 半透明の薄い水色 */
+    border-left: 1px dashed rgba(0,0,0,0.1);
+    border-right: 1px dashed rgba(0,0,0,0.1);
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.upcoming-title {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #5a4a3a;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed #eaddc5;
+}
+
+.upcoming-title span {
+    display: inline-block;
+    transform: rotate(-10deg);
+    margin-right: 5px;
+}
+
+.message-log {
+    margin-bottom: 20px;
+}
+
+.message {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.message p {
+    margin-bottom: 0.8em;
+}
+.message p:last-child {
+    margin-bottom: 0;
+}
+
+.message.from-admin {
+    border-left: 4px solid #f4a8a8; /* 管理人のテーマカラーっぽい赤系 */
+}
+
+.message.to-admin {
+    border-left: 4px solid #a8c8f4; /* 執筆者用の青系 */
+    font-style: italic;
+    color: #666;
+}
+
+.message .ps {
+    font-size: 14px;
+    color: #d32f2f;
+    font-weight: 600;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dotted #ccc;
+}
+
+.next-topic {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #f5f5f5;
+    border: 1px solid #eee;
+    font-weight: 600;
+    color: #333;
+    transform: rotate(0.5deg);
+}
+/* --- ▲▲▲ 次回予告セクションここまで ▲▲▲ --- */
         
         /*
         * =================================================================
@@ -766,6 +858,27 @@
                     </details>
                     </div>
                 </article>
+                <section class="upcoming-notice">
+                    <h3 class="upcoming-title"><span>📞</span> 直近のやりとりとか</h3>
+                    <div class="message-log">
+                        <div class="message from-admin">
+                            <p><strong>To: Makotonくん (from シミズ)</strong></p>
+                            <p>シミズですけどね．<br>長々としたフライト及び，鬱々とした日本での対話の日々，そしてガタガタとした大学への道のりお疲れさまでした．<br>
+                            私は今，たくさんの締め切りに追われてあわあわとしてますが．<br>
+                            ウェブサイト無事公開おつかれさまでした！<br>
+                            これ週間のブログみたいなものなんで、継続投稿よろしく頼みます。<br>
+                            次の期限は <strong>7/3</strong> あたりで！</p>
+                            <p class="ps">追伸：ちなみに原稿などが二週間遅れた場合，前回の没になった黒歴史を掲載するのでよろしくね😎</p>
+                        </div>
+                        <div class="message to-admin">
+                            <p><strong>To: シミズ (from Makoton)</strong></p>
+                            <p>（...現在、砂漠の彼方からの返信を待っています。果たして原稿は無事届くのか？それとも黒歴史が日の目を見てしまうのか？乞うご期待！）</p>
+                        </div>
+                    </div>
+                    <div class="next-topic">
+                        <p><strong>【次回投稿予定】</strong>7/3</p>
+                    </div>
+                </section>
         
             <article class="entry" id="daily">
                 <time class="entry-date">2025.06.25</time>
