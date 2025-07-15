@@ -724,11 +724,59 @@
         }
         /* --- ▲▲▲ 次回予告セクションここまで ▲▲▲ --- */
         
+        /* --- ▼▼▼ 更新休止のお知らせ用スタイル ▼▼▼ --- */
+        .hiatus-notice {
+            background: #fff;
+            border: 2px double #d32f2f; /* ダブルラインで重要感を出す */
+            padding: 25px 30px;
+            margin-bottom: 80px; /* 次の記事とのマージンを確保 */
+            transform: rotate(-1.5deg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            text-align: center;
+        }
+
+        .hiatus-notice::before {
+            content: '🚧';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-10deg);
+            font-size: 30px;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.15);
+        }
+
+        .hiatus-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #d32f2f; /* 赤系の色で注意を引く */
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .hiatus-content p {
+            margin-bottom: 1em;
+            font-size: 15px;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .hiatus-content .comment-author {
+            display: block;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+            font-weight: normal;
+        }
+        /* --- ▲▲▲ 更新休止のお知らせここまで ▲▲▲ --- */
+
         /*
-        * =================================================================
-        * ▼▼▼【スマホ対応用の修正】▼▼▼
-        * =================================================================
-        */
+         * =================================================================
+         * ▼▼▼【スマホ対応用の修正】▼▼▼
+         * =================================================================
+         */
         @media (max-width: 768px) {
             body {
                 overflow-x: hidden;
@@ -805,6 +853,16 @@
             </div>
         </header>
         <main class="content">
+
+            <section class="hiatus-notice">
+                <h3 class="hiatus-title">【重要】更新休止のお知らせ</h3>
+                <div class="hiatus-content">
+                    <p>当ブログの執筆者、Makotonがメンタルブレイクを起こしたため、しばらくの間、更新を休止いたします。</p>
+                    <p>砂漠の過酷な環境が彼のガラスのハートに影響を与えた模様です。皆様にはご心配をおかけしますが、彼の回復を気長にお待ちいただけますと幸いです。</p>
+                    <p>再開の目処が立ちましたら、改めてこちらでお知らせいたします。</p>
+                    <span class="comment-author">— 心配する管理人より</span>
+                </div>
+            </section>
             <article class="entry" id="daily">
                 <time class="entry-date">2025.06.26</time>
                 <span class="entry-mood">🤔</span>
